@@ -1,0 +1,17 @@
+DirectoryIndex app.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(admin|docs)($|/) - [L]
+    RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ /mapi/$1
+    RewriteRule ^(.*)$ app.php?q=$1 [L,QSA]
+</IfModule>
+
+
+#RewriteEngine on
+##RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ /$1
+#RewriteRule ^(.*)$ app.php?q=$1 [L,QSA]
+
+#RewriteEngine on
+#RewriteCond %{REQUEST_URI} !^/app\.php$
+#RewriteRule ^ /app.php [L]

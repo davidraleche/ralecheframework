@@ -1,0 +1,7 @@
+{
+    "require": {
+        "econea/nusoap": "~0.9.5.1",
+        "zircote/swagger-php": "^3.0",
+        "squizlabs/php_codesniffer": "*"
+    }
+}
