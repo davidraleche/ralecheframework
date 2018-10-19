@@ -1,4 +1,20 @@
 {
+    "name": "raleche/primeframework",
+    "type": "library",
+    "description": "The Raleche PHP framework",
+    "keywords": ["framework"],
+    "homepage": "https://david.raleche.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Raleche",
+            "email": "david@raleche.com"
+        },
+        {
+            "name": "Raleche Community",
+            "homepage": "https://raleche.com/"
+        }
+    ],
     "require": {
         "econea/nusoap": "~0.9.5.1",
         "zircote/swagger-php": "^3.0",
