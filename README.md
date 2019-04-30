@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/zircote/swagger-php/master.svg?style=flat-square)](https://travis-ci.org/zircote/swagger-php)
 [![License](https://img.shields.io/badge/license-Apache2.0-blue.svg?style=flat-square)](LICENSE-2.0.txt)
 
-# MAPI documentation
+# API documentation
 
 Intent is to document th future API sustaining the raleche+ growth 
 
@@ -27,7 +27,7 @@ Add comment to your php files.
 ```
 
 
-## More on MAPI API
+## More on API
 
 - https://git.raleche.com/raleche/prelude
 - [Swagger Example Documentation](https://github.com/zircote/swagger-php/tree/master/Examples)
