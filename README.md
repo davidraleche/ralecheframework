@@ -19,7 +19,7 @@ Add comment to your php files.
  * PHP version 7.2
  *
  * @category Core
- * @package  Mapi
+ * @package  Api
  * @author   David Raleche <davidr@raleche+.com>
  * @license  http://raleche.com/docs/swagger.json raleche
  * @link     https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo
