@@ -21,7 +21,7 @@ Add comment to your php files.
  * @category Core
  * @package  Mapi
  * @author   David Raleche <davidr@raleche+.com>
- * @license  http://mapi.raleche+.com/docs/swagger.json raleche
+ * @license  http://raleche.com/docs/swagger.json raleche
  * @link     https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo
  */
 ```
@@ -31,8 +31,6 @@ Add comment to your php files.
 
 - https://git.raleche.com/raleche/prelude
 - [Swagger Example Documentation](https://github.com/zircote/swagger-php/tree/master/Examples)
-- [General Doc page](https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo)  (wiki over page)
-- [Developer Doc page](https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/682950678/Framework+Constitution) (wiki raleche page)
 
 ## Contributing
 
