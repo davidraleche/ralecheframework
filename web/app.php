@@ -6,7 +6,7 @@
  * PHP version 7.25
  *
  * @category Core
- * @package  Mapi
+ * @package  Api
  * @author   David Raleche <davidr@raleche.com>
  * @license  http://mapi.raleche.com/docs/swagger.json raleche
  * @link     https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo
