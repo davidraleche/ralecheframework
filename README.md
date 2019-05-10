@@ -24,9 +24,8 @@ Add comment to your php files.
  *
  * @package   Api
  * @author    David Raleche <davidr@raleche.com>
- * @license   http://raleche.com/docs/swagger.json raleche
+ * @license   http://raleche.com/docs/swagger.json
  * @link      https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo
- * @reference ECOM
  */
  
    
