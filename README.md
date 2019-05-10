@@ -3,7 +3,7 @@
 
 # API documentation
 
-Intent is to document th future API sustaining the raleche+ growth 
+Intent is to document th future Raleche APi Framework
 
 ## Features
 - Lightweight Api Route
