@@ -22,7 +22,6 @@ Add comment to your php files.
  *
  * @return array $array
  *
- * @category  Core
  * @package   Api
  * @author    David Raleche <davidr@raleche.com>
  * @license   http://raleche.com/docs/swagger.json raleche
