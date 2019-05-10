@@ -9,28 +9,6 @@ Intent is to document th future API sustaining the raleche+ growth
 - Lightweight Api Route
 - Easy swagger API documentation (Zircote)
 
-## Usage
-
-Add comment to your php files.
-```php
-/**
- * Abstract Controller Class
- *
- * PHP version 7.2
- *
- * @param string $str
- *
- * @return array $array
- *
- * @package   Api
- * @author    David Raleche <davidr@raleche.com>
- * @license   http://raleche.com/docs/swagger.json
- * @link      https://ralecheinc.atlassian.net/wiki/spaces/TEC/pages/673513891/Framework+Architecture+Demo
- */
- 
-   
-```
-
 
 ## More on API
 
@@ -39,8 +17,7 @@ Add comment to your php files.
 
 ## Contributing
 
-Feel free to submit [Github Issues](https://git.raleche.com/raleche/prelude)
-or pull requests.
+Feel free to submit [Github Issues](https://git.raleche.com/raleche/prelude) or pull requests.
 
 
 Running only linting:
