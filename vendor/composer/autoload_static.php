@@ -6,76 +6,18 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitb3e2767859be977417514179446efad7
 {
-    public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '0ccdf99b8f62f02c52cba55802e0c2e7' => __DIR__ . '/..' . '/zircote/swagger-php/src/functions.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'Y' => 
         array (
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Finder\\' => 25,
-        ),
-        'O' => 
-        array (
-            'OpenApi\\' => 8,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Annotations\\' => 28,
+            'Yana\\' => 5,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Ctype\\' => 
+        'Yana\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+            0 => __DIR__ . '/../..' . '/Yana',
         ),
-        'Symfony\\Component\\Yaml\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/yaml',
-        ),
-        'Symfony\\Component\\Finder\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/finder',
-        ),
-        'OpenApi\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
-        ),
-        'Doctrine\\Common\\Annotations\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'D' => 
-        array (
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
-        ),
-    );
-
-    public static $classMap = array (
-        'XMLSchema' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_base' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_client' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_fault' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_parser' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_server' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'nusoap_xmlschema' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soap_fault' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soap_parser' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soap_server' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soap_transport_http' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soapclient' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'soapval' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
-        'wsdl' => __DIR__ . '/..' . '/econea/nusoap/src/nusoap.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -83,8 +25,6 @@ class ComposerStaticInitb3e2767859be977417514179446efad7
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb3e2767859be977417514179446efad7::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb3e2767859be977417514179446efad7::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb3e2767859be977417514179446efad7::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb3e2767859be977417514179446efad7::$classMap;
 
         }, null, ClassLoader::class);
     }

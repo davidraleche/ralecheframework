@@ -6,7 +6,9 @@
 Intent is to document th future Raleche APi Framework
 
 ## Features
-- Lightweight Api Route
+- QuickAPiRoute
+- QuickLogs
+- QuickAuthentication
 - Easy swagger API documentation (Zircote)
 
 

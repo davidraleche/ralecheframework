@@ -1,20 +1,29 @@
 {
-    "name": "raleche/primeframework",
+    "name": "yana/helpers",
     "type": "library",
-    "description": "The Raleche PHP framework",
-    "keywords": ["framework"],
+    "description": "The Yana PHP framework",
+    "keywords": [
+        "framework"
+    ],
     "homepage": "https://david.raleche.com",
     "license": "MIT",
     "authors": [
         {
             "name": "David Raleche",
-            "email": "david@raleche.com"
-        },
-        {
-            "name": "Raleche Community",
+            "email": "david@raleche.com",
             "homepage": "https://raleche.com/"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
+        "php": ">=7.2.0",
+        "phpunit/phpunit": "^7.4",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yana\\": "Yana/"
+        }
     }
 }
+
