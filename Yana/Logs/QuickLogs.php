@@ -121,6 +121,7 @@ class QuickLogs
 
     }
 
+
     /**
      * Execute Unix command line to retrieve logs
      *
