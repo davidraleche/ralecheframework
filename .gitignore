@@ -1,8 +1,5 @@
-vendor/
-
-/vendor/
-
 .idea
-
 composer.lock
-composer.phar 
+composer.phar
+vendor/
+/vendor/
