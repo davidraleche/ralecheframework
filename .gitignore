@@ -5,3 +5,8 @@ composer.phar
 vendor/*
 /vendor/*
 /vendor/*
+*.iml
+*.xml
+.idea/sonarIssues.xml
+.idea/vcs.xml
+.idea/workspace.xml
