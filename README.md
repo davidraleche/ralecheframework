@@ -7,10 +7,14 @@ Quick PHP helper tool to undertake refactor code
 https://github.com/davidraleche/ralecheframework
 
 ## Features
-- QuickAPiRoute
 - QuickLogs
 - QuickAuthentication
-- Easy swagger API documentation (Zircote)
+- QuickPasswordGeneration
+- QuickSQSQueues
+- QuickApiResponseInterface
+- QuickApiRequestInterface
+- QuickDatesApi
+- QuickAPI (lightwieght in progress)
 
 
 ## Contributing
