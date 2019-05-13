@@ -10,7 +10,7 @@ namespace Yana\Logs;
 
 
 use Yana\Authentication\QuickAuthentication;
-
+use Yana\Command\ExecutePhpUnit;
 /**
  * Class QuickLogs
  *
@@ -39,7 +39,7 @@ class QuickLogs
         $this->executePhpunitValue =  $parameters['executePhpunitValue'];
         if($this->executePhpunitValue === "true")
         {
-            $executePhpUnit = new ExecutePhpUnit();
+            $executePhpUnit = new Execute();
             $executePhpUnit->executePhpunit();
         }
         $this->quickAuthentication = $quickAuthentication;
@@ -101,14 +101,14 @@ class QuickLogs
                 >10 to 500 rows</input>
             </form>
             </div>
-            <div style="display: inline-block">
-                <form action="index.php" method="post">
-                    <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername()?>"></input>
-                    <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword()?>"></input>
-                    <input type="hidden" name="executePhpunitValue" value="true"></input>
-                    <input type="submit" name="executePhpunit" value="executePhpunit"></input>
-                </form>
-            </div>
+<!--            <div style="display: inline-block">-->
+<!--                <form action="index.php" method="post">-->
+<!--                    <input type="hidden" name="user" value="--><?//= $this->quickAuthentication->getUsername()?><!--"></input>-->
+<!--                    <input type="hidden" name="pass" value="--><?//= $this->quickAuthentication->getPassword()?><!--"></input>-->
+<!--                    <input type="hidden" name="executePhpunitValue" value="true"></input>-->
+<!--                    <input type="submit" name="executePhpunit" value="executePhpunit"></input>-->
+<!--                </form>-->
+<!--            </div>-->
 <!--            <div style="display: inline-block">-->
 <!--                <a href="/phpunit/agile-phpunit.html" class="button">See PHPUnit Agile Logs</a>-->
 <!--            </div>-->
