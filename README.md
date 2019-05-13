@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/zircote/swagger-php/master.svg?style=flat-square)](https://travis-ci.org/zircote/swagger-php)
 [![License](https://img.shields.io/badge/license-Apache2.0-blue.svg?style=flat-square)](LICENSE-2.0.txt)
 
-# Raleche Framework - Yana 
+# Yana Framework - Raleche Community 
 
 Quick PHP helper tool to undertake refactor code
 https://github.com/davidraleche/ralecheframework
