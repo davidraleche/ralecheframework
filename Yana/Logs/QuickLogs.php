@@ -101,6 +101,7 @@ class QuickLogs
                 >10 to 500 rows</input>
             </form>
             </div>
+            
     <!--            <div style="display: inline-block">-->
 <!--                <a href="/phpunit/agile-phpunit.html" class="button">See PHPUnit Agile Logs</a>-->
 <!--            </div>-->
