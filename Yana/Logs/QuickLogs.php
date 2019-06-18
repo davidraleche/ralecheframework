@@ -52,12 +52,10 @@ class QuickLogs
      *
      * @return bool
      *
-     * @package   EDDMBundle\controllers
-     * @author    David Raleche <davidr@4over.com>
-     * @license   Raleche
+     * @author    David Raleche
      * @link      david.raleche.com
+     *
      * @since     2019-05-10
-     * @reference ECOM
      *
      **/
     public function process(): bool
@@ -80,6 +78,11 @@ class QuickLogs
 
     /**
      * Refresh Page
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function refresh(): void
     {
@@ -98,23 +101,9 @@ class QuickLogs
                        oninput='document.getElementById("changerows").submit();'
                        onchange='document.getElementById("changerows").submit();'
                        value="<?php echo isset($this->numberOfRows)? $this->numberOfRows : 10 ?>"
-                >10 to 500 rows</input>
+                >10 to 500 rows </input>
             </form>
             </div>
-<!--            <div style="display: inline-block">-->
-<!--                <form action="index.php" method="post">-->
-<!--                    <input type="hidden" name="user" value="--><?//= $this->quickAuthentication->getUsername()?><!--"></input>-->
-<!--                    <input type="hidden" name="pass" value="--><?//= $this->quickAuthentication->getPassword()?><!--"></input>-->
-<!--                    <input type="hidden" name="executePhpunitValue" value="true"></input>-->
-<!--                    <input type="submit" name="executePhpunit" value="executePhpunit"></input>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div style="display: inline-block">-->
-<!--                <a href="/phpunit/agile-phpunit.html" class="button">See PHPUnit Agile Logs</a>-->
-<!--            </div>-->
-<!--            <div style="display: inline-block">-->
-<!--                <a href="/phpunit" class="button">See PHPUnit coverage Analysis Logs</a>-->
-<!--            </div>-->
         </div>
         <?php
         $this->quickAuthentication->signout();
@@ -126,6 +115,11 @@ class QuickLogs
      * Execute Unix command line to retrieve logs
      *
      * @param $error_logs
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function getLogs(int $numberRowsToBeDisplayed = NUMBERROWSTOBEDISPLAYED)
     {
@@ -143,6 +137,15 @@ class QuickLogs
         print_r($error_logs);
     }
 
+    /**
+     *
+     * Tail Function
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
+    **/
     public function tail($lines = 20)
     {
         $data = '';
@@ -176,6 +179,11 @@ class QuickLogs
      * Retrieve Post Parameters
      *
      * @return array
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     private function retrievePostParameters() : array
     {
@@ -188,7 +196,12 @@ class QuickLogs
 
 
     /**
-     * Html Header
+     * Html Header SignedIn
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     private function htmlHeaderSignedIn()
     {
@@ -219,6 +232,11 @@ class QuickLogs
 
     /**
      * Html Header
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     private function htmlHeader()
     {
@@ -226,7 +244,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1>QuickLogs</h1></div>";
+        echo "<div style=\"display: inline-block\"><h1>QuickLogs V.1</h1></div>";
 
     }
 }
