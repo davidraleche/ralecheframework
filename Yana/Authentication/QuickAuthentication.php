@@ -4,7 +4,12 @@ namespace Yana\Authentication;
 
 /**
  * Class QuickAuthentication
- */
+ *
+ * @author    David Raleche
+ * @link      david.raleche.com
+ *
+ * @since     2019-05-10
+ **/
 class QuickAuthentication
 {
     /**
@@ -24,6 +29,11 @@ class QuickAuthentication
 
     /**
      * QuickAuthentication constructor.
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function __construct(array $usersAllowed = null)
     {
@@ -40,6 +50,11 @@ class QuickAuthentication
      * Retrieve Post Parameters
      *
      * @return array
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     private function retrievePostParameters() : array
     {
@@ -54,6 +69,11 @@ class QuickAuthentication
      * Signin including html elements
      *
      * @return bool
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function signin(): void
     {
@@ -70,6 +90,11 @@ class QuickAuthentication
      * Verify if user allowed
      *
      * @return bool
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function ifUserAllowed(): bool
     {
@@ -82,6 +107,11 @@ class QuickAuthentication
 
     /**
      * Signout alows you to signout of logging page
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function signout(): void
     {
@@ -101,6 +131,11 @@ class QuickAuthentication
      * Get User
      *
      * @return mixed
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function getUsername()
     {
@@ -111,6 +146,11 @@ class QuickAuthentication
      * setUser Entity
      *
      * @param mixed $username
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function setUsername($username)
     {
@@ -121,6 +161,11 @@ class QuickAuthentication
      * get Password of user
      *
      * @return mixed
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function getPassword()
     {
@@ -131,6 +176,11 @@ class QuickAuthentication
      * SetPassword
      *
      * @param mixed $password
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
      */
     public function setPassword($password)
     {
