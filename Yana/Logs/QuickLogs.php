@@ -67,6 +67,7 @@ class QuickLogs
             $this->refresh();
             $this->getLogs($this->numberOfRows);
             $this->refresh();
+            $this->ByDavidRalecheTrademark();
             return true;
         }
         // User not allowed
@@ -75,6 +76,26 @@ class QuickLogs
         return false;
     }
 
+    /**
+     * Sprout Text - By david Raleche
+     *
+     * @param String $routeUuid
+     *
+     * @return bool
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
+     *
+     **/
+    public function ByDavidRalecheTrademark(){
+        ?>
+        <div style="display: inline-block">
+            <font size="1"><i>by David Raleche</i></font>
+        </div>
+        <?php
+    }
 
     /**
      * Refresh Page
