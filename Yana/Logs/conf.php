@@ -1,10 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: davidr
- * Date: 5/13/2019
- * Time: 10:56 AM
- */
+    /**
+     * Setup Error Log file
+     *
+     * @author    David Raleche
+     * @link      david.raleche.com
+     *
+     * @since     2019-05-10
+     **/
 
 return [
     'error_log_path' => '/var/log/php-fpm/www-error.log',
