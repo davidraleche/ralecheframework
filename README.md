@@ -17,6 +17,16 @@ https://github.com/davidraleche/ralecheframework
 
 Feel free to submit [Github Issues](https://github.com/davidraleche/ralecheframework) or pull requests.
 
+## How To use
+```bash
+<?php
+
+require_once __DIR__.'/../../vendor/autoload.php';
+
+$authenticationInstance = new \Yana\Authentication\QuickAuthentication();
+$quickLogs = new \Yana\Logs\QuickLogs($authenticationInstance);
+$quickLogs->process();
+```
 
 ## Command Lines
 
