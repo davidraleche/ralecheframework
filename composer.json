@@ -1,7 +1,7 @@
 {
     "name": "yana/dr",
     "type": "library",
-    "description": "The Yana PHP framework",
+    "description": "Yana - Quick Logs - PHP Log Parser",
     "keywords": [
         "framework"
     ],
@@ -16,7 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.2.0",
         "phpunit/phpunit": "^7.4",
         "guzzlehttp/guzzle": "^6.0"
     },    
