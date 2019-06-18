@@ -244,7 +244,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1>QuickLogs V.1</h1></div>";
+        echo "<div style=\"display: inline-block\"><h1>QuickLogs</h1></div>";
 
     }
 }
