@@ -129,10 +129,9 @@ class QuickLogs
         else
             $error_log_path = $this->conf_error_log['error_log_path_backup'];
 
-        echo $error_log_path;
 
         $this->filename = $error_log_path;
-        echo $error_log_path."<br>";
+        echo ' Error Log File: '.$error_log_path."<br>";
 
         $error_logs = $this->tail($numberRowsToBeDisplayed);
         $error_logs = str_replace("\n","<br>",$error_logs);
