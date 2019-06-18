@@ -3,14 +3,16 @@
 
 # Quick Logs
 
-Parse quickly yout php errors and php warnings via a web browser.
+Parse quickly your php errors and php warnings via a web browser.
 if you are tired of 'tail -f' or 'cat error_log' QuickLogs is your solution 
 
 ## Features
 - QuickLogs
+
 ![](http://david.raleche.com/wp-content/uploads/2019/06/quicklogs-1024x407.png)
 
 - QuickAuthentication
+
 ![](http://david.raleche.com/wp-content/uploads/2019/06/quickauthentication-1024x448.png)
 
 
