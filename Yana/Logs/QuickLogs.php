@@ -110,14 +110,10 @@ class QuickLogs
         ?>
         <div style="display: inline-block">
             <div style="display: inline-block">
-                <button onclick="autoResfreshFunction();">ReStart auto refresh page</button>
-                <button onclick="stopResfreshFunction();">Stop refresh page</button>
-            </div>
-            <div style="display: inline-block">
-            <form action="index.php" method="post" name="changerows" id="changerows">
+            <form action="index.php?" method="post" name="changerows" id="changerows">
                 <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername()?>"></input>
                 <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword()?>"></input>
-                <input type="submit" name="submit" value="Change rows"></input>
+                <input type="submit" name="submit" value="Refresh Logs"></input>
                 <input type="range" name="numberOfRows" min="10" max="500"
                        oninput='document.getElementById("changerows").submit();'
                        onchange='document.getElementById("changerows").submit();'
@@ -152,7 +148,10 @@ class QuickLogs
 
 
         $this->filename = $error_log_path;
-        echo ' Error Log File: '.$error_log_path."<br>";
+        //See error log file
+        $this->error_log_path = ' Error Log File: '.$error_log_path;
+
+        echo "<br>";
 
         $error_logs = $this->tail($numberRowsToBeDisplayed);
         $error_logs = str_replace("\n","<br>",$error_logs);
@@ -266,7 +265,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1>QuickLogs</h1></div>";
+        echo "<div style=\"display: inline-block\"><h1><i>QuickLogs</i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
 
     }
 }
