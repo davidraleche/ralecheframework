@@ -138,36 +138,39 @@ class QuickLogs
      *
      * @since     2019-05-10
      */
-    public function getLogs(int $numberRowsToBeDisplayed = NUMBERROWSTOBEDISPLAYED)
+    public function getLogs(int $numberRowsToBeDisplayed = NUMBERROWSTOBEDISPLAYED) : void
     {
-        $error_logs = "";
+        /* Check if error_log file exists otherwise failover into back demo */
         if(file_exists($this->conf_error_log['error_log_path']))
             $error_log_path = $this->conf_error_log['error_log_path'];
         else
             $error_log_path = $this->conf_error_log['error_log_path_backup'];
-
-
         $this->filename = $error_log_path;
-        //See error log file
+
+        /* See error log file */
         $this->error_log_path = ' Error Log File: '.$error_log_path;
-
+        /* make a html break line */
         echo "<br>";
-
+        /* initialize error log variable to be final display */
+        $error_logs = "";
+        /* Php mimic unix Tail command */
         $error_logs = $this->tail($numberRowsToBeDisplayed);
+        /* convert breakline \n\r to Html <br> tag */
         $error_logs = str_replace("\n","<br>",$error_logs);
+
         print_r($error_logs);
     }
 
     /**
      *
-     * Tail Function
+     * Tail Function mimic in php
      *
      * @author    David Raleche
      * @link      david.raleche.com
      *
      * @since     2019-05-10
     **/
-    public function tail($lines = 20)
+    public function tail(int $lines = 20) : string
     {
         $data = '';
         $fp = fopen($this->filename, "r");
@@ -265,7 +268,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1><i>QuickLogs</i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
+        echo "<div style=\"display: inline-block\"><h1><i>PHP-ErrorLog </i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
 
     }
 }
