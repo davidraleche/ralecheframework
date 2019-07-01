@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/zircote/swagger-php/master.svg?style=flat-square)](https://travis-ci.org/zircote/swagger-php)
 [![License](https://img.shields.io/badge/license-Apache2.0-blue.svg?style=flat-square)](LICENSE-2.0.txt)
 
-# Quick Logs
+# Quick Logs - Error Log Parser
 
 Parse quickly your php errors and php warnings via a web browser.
 if you are tired of 'tail -f' or 'cat error_log' QuickLogs is your solution 
