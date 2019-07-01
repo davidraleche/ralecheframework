@@ -14,13 +14,15 @@ use Yana\Command\ExecutePhpUnit;
 /**
  * Class QuickLogs
  *
- * @package   EDDMBundle\controllers
- * @author    David Raleche <davidr@4over.com>
- * @license   Raleche
- * @link      david.raleche.com
  * @since     2019-05-10
- * @reference ECOM
+ * @version   2019-07-01
  *
+ * @link      https://packagist.org/packages/yana/dr
+ * @reference composer require yana/dr
+ *
+ * @package   Yana\Logs
+ * @author    David Raleche <david@raleche.com>
+ * @license   Raleche
  **/
 class QuickLogs
 {

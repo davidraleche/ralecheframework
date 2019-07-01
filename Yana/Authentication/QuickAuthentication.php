@@ -5,10 +5,12 @@ namespace Yana\Authentication;
 /**
  * Class QuickAuthentication
  *
- * @author    David Raleche
- * @link      david.raleche.com
+ * @link      https://packagist.org/packages/yana/dr
+ * @reference composer require yana/dr
  *
- * @since     2019-05-10
+ * @package   Yana\Logs
+ * @author    David Raleche <david@raleche.com>
+ * @license   Raleche
  **/
 class QuickAuthentication
 {
@@ -58,7 +60,7 @@ class QuickAuthentication
      */
     private function retrievePostParameters() : array
     {
-        //Ternary Function
+        /* Ternary Function */
         $user = isset($_POST['user']) ? $_POST['user'] : null;
         $pass = isset($_POST['pass']) ? $_POST['pass'] : null;
 
@@ -126,7 +128,6 @@ class QuickAuthentication
         <?php
     }
 
-
     /**
      * Get User
      *
@@ -186,5 +187,4 @@ class QuickAuthentication
     {
         $this->password = $password;
     }
-
 }
