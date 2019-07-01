@@ -63,7 +63,7 @@ class QuickLogs
     public function process(): bool
     {
         $this->htmlHeader();
-        //If Correct Credentials
+        /* If Correct Credentials */
         if ($this->quickAuthentication->ifUserAllowed()) {
             $this->htmlHeaderSignedIn();
             $this->refresh();
@@ -72,7 +72,7 @@ class QuickLogs
             $this->ByDavidRalecheTrademark();
             return true;
         }
-        // User not allowed
+        /* User not allowed */
         $this->quickAuthentication->signin();
 
         return false;
