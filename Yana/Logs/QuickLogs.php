@@ -26,8 +26,11 @@ use Yana\Command\ExecutePhpUnit;
  **/
 class QuickLogs
 {
+    /** @var string $quickAuthentication */
     public $quickAuthentication;
+    /** @var integer $quickAuthentication */
     public $numberOfRows;
+    /** @global integer $quickAuthentication */
     const NUMBERROWSTOBEDISPLAYED = 50;
 
     /**
