@@ -16,7 +16,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "yana/dr" : "^1.5"
     },
     "autoload": {
         "psr-4": {
