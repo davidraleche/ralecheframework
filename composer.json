@@ -1,7 +1,7 @@
 {
     "name": "yana/dr",
     "type": "library",
-    "description": "Yana - Quick Logs - PHP Log Parser",
+    "description": "PHP Log Parser LightWeight - updated 2021 - This package contains an authentication page and log display",
     "keywords": [
         "framework"
     ],
@@ -11,7 +11,7 @@
         {
             "name": "David Raleche",
             "email": "david@raleche.com",
-            "homepage": "https://raleche.com/"
+            "homepage": "https://david.raleche.com/"
         }
     ],
     "minimum-stability": "stable",
