@@ -118,6 +118,7 @@ class QuickLogs
             <form action="index.php?" method="post" name="changerows" id="changerows">
                 <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername()?>"></input>
                 <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword()?>"></input>
+                <input type="text" name="text" value="keyword"></input>
                 <input type="submit" name="submit" value="Refresh Logs"></input>
                 <input type="range" name="numberOfRows" min="10" max="500"
                        oninput='document.getElementById("changerows").submit();'
@@ -273,7 +274,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1><i>QuickLog - Error Parser </i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
+        echo "<div style=\"display: inline-block\"><h1><i>QuickLogs - Error Parser </i><font size='2'><i> - version 1.5 </i></font> </h1></div>";
 
     }
 }
