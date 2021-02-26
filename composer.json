@@ -14,7 +14,7 @@
             "homepage": "https://david.raleche.com/"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.5",
     "require": {
         "php": ">=7.0"
     },
