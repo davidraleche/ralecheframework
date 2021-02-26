@@ -35,18 +35,30 @@ class QuickLogs
 
     /**
      * QuickLogs constructor.
+     * Dependency injection
      */
     public function __construct(QuickAuthentication $quickAuthentication)
     {
         $this->conf_error_log = include_once("conf.php");
+
+        /**
+         * Retrieve Post Parameter
+         */
         $parameters = $this->retrievePostParameters();
         $this->numberOfRows =  $parameters['numberOfRows'];
+        $this->searchKeyword =  $parameters['searchKeyword'];
         $this->executePhpunitValue =  $parameters['executePhpunitValue'];
+
+
+        /**
+         * Execute Shell command Line
+         */
         if($this->executePhpunitValue === "true")
         {
             $executePhpUnit = new Execute();
             $executePhpUnit->executePhpunit();
         }
+
         $this->quickAuthentication = $quickAuthentication;
     }
 
@@ -118,7 +130,7 @@ class QuickLogs
             <form action="index.php?" method="post" name="changerows" id="changerows">
                 <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername()?>"></input>
                 <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword()?>"></input>
-                <input type="text" name="text" value="keyword"></input>
+                <input type="text" name="searchKeyword" value="searchKeyword"></input>
                 <input type="submit" name="submit" value="Refresh Logs"></input>
                 <input type="range" name="numberOfRows" min="10" max="500"
                        oninput='document.getElementById("changerows").submit();'
@@ -133,6 +145,55 @@ class QuickLogs
 
     }
 
+
+    /**
+     *
+     * searchkeyword
+     *
+     * @param string $searchKeyword
+     *
+     * @return string $data
+     *
+     * @throws  \Exception $exception
+     *
+     * @author David Raleche
+     * @version Feb 26 2021
+     *
+     */
+    public function searchkeyword(int $lines = 120, string $searchKeyword)
+    {
+        $lines = 1000;
+        echo "<b>String Searched</b> <font color='red'>". $searchKeyword."</font><br>";
+
+
+        $data = '';
+        $fp = fopen($this->filename, "r");
+        $block = 4096;
+        $max = filesize($this->filename);
+
+        for($len = 0; $len < $max; $len += $block)
+        {
+            $seekSize = ($max - $len > $block) ? $block : $max - $len;
+            fseek($fp, ($len + $seekSize) * -1, SEEK_END);
+            $data = fread($fp, $seekSize) . $data;
+
+            if(substr_count($data, "\n") >= $lines + 1)
+            {
+                /* Make sure that the last line ends with a '\n' */
+                if(substr($data, strlen($data)-1, 1) !== "\n") {
+                    $data .= "\n";
+                }
+
+               // var_dump($data);
+                preg_match_all("/$searchKeyword(.*)/", $data, $match);
+             //   var_dump($match);
+                fclose($fp);
+                return $match[0];
+            }
+        }
+        fclose($fp);
+      //  return $data;
+    }
 
     /**
      * Execute Unix command line to retrieve logs
@@ -159,8 +220,17 @@ class QuickLogs
         echo "<br>";
         /* initialize error log variable to be final display */
         $error_logs = "";
-        /* Php mimic unix Tail command */
-        $error_logs = $this->tail($numberRowsToBeDisplayed);
+
+
+        if($this->searchKeyword == 'searchKeyword') {
+            /* Php mimic unix Tail command */
+            $error_logs = $this->tail($numberRowsToBeDisplayed);
+        } else {
+            $error_logs = $this->searchkeyword($numberRowsToBeDisplayed, $this->searchKeyword);
+        }
+
+
+
         /* convert breakline \n\r to Html <br> tag */
         $error_logs = str_replace("\n","<br>",$error_logs);
 
@@ -219,9 +289,14 @@ class QuickLogs
     {
         //Ternary Function
         $numberOfRows = isset($_POST['numberOfRows']) ? $_POST['numberOfRows'] : 50;
+        $searchKeyword = isset($_POST['searchKeyword']) ? $_POST['searchKeyword'] : 'searchKeyword';
         $executePhpunit = isset($_POST['executePhpunitValue']) ? $_POST['executePhpunitValue'] : "false";
 
-        return array( 'numberOfRows' => $numberOfRows, 'executePhpunitValue' => $executePhpunit);
+
+        return array(
+                'numberOfRows' => $numberOfRows,
+                'searchKeyword' => $searchKeyword,
+                 'executePhpunitValue' => $executePhpunit);
     }
 
 
