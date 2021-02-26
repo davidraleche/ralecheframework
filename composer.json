@@ -14,10 +14,12 @@
             "homepage": "https://david.raleche.com/"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.0",
-        "yana/dr" : "^1.5"
+        "yana/dr" : "^1.x",
+        "phpunit/phpunit": "^7.4",
+        "guzzlehttp/guzzle": "^6.0"
     },
     "autoload": {
         "psr-4": {
