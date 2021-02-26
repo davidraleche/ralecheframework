@@ -273,7 +273,7 @@ class QuickLogs
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">
                 </head>";
-        echo "<div style=\"display: inline-block\"><h1><i>PHP-ErrorLog </i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
+        echo "<div style=\"display: inline-block\"><h1><i>QuickLog - Error Parser </i><font size='2'><i> - version 1.4 </i></font> </h1></div>";
 
     }
 }
