@@ -127,7 +127,7 @@ class QuickLogs
         if ($this->quickAuthentication->ifUserAllowed()) {
 //            $this->htmlHeader();
 //            $this->htmlHeaderSignedIn();
-            $this->refresh();
+ //           $this->refresh();
 //            $this->getLogs($this->numberOfRows);
 //            $this->refresh();
 //            $this->ByDavidRalecheTrademark();
@@ -206,6 +206,7 @@ class QuickLogs
 
 
 
+
             <!-- Bootstrap core CSS -->
             <link href="bootstrap.min.css" rel="stylesheet">
 
@@ -245,7 +246,7 @@ class QuickLogs
                             <input name="searchKeyword" class="form-control mr-sm-2" type="search"
                                    placeholder="Search"
                                    aria-label="Search">
-                            <input type="submit" class="btn btn-primary my-2" name="submit" value="searchKeyword"></input>
+                            <input   type="submit" class="btn btn-primary my-2" name="submit" value="searchKeyword"></input>
                             <!--                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
                         </form>
 <!---->
@@ -281,12 +282,17 @@ class QuickLogs
         </main>
             <div style="padding-left:15px">
                 <br><br><br><br><br>
+                <table class="table table-striped">
                 <?php
                 $this->getLogs($this->numberOfRows);
                 ?>
-
+                </table>
             </div>
 
+        
+        <script type="application/javascript">
+            window.scrollTo(0,document.body.scrollHeight);
+        </script>
 
 
         </body>
@@ -315,7 +321,7 @@ class QuickLogs
         /* See error log file */
         $this->error_log_path = ' Error Log File: ' . $error_log_path;
         /* make a html break line */
-        echo "<br>";
+
         /* initialize error log variable to be final display */
         $error_logs = "";
 
@@ -328,10 +334,12 @@ class QuickLogs
         }
 
 
+        echo "<tr><td>";
         /* convert breakline \n\r to Html <br> tag */
-        $error_logs = str_replace("\n", "<br>", $error_logs);
+        $error_logs = str_replace("\n", "</td></tr><tr><td>", $error_logs);
 
         print_r($error_logs);
+        echo "</td></tr>";
     }
 
     /**
