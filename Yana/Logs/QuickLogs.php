@@ -203,21 +203,21 @@ class QuickLogs
             <meta name="author" content="David Raleche">
             <meta name="generator" content="Hugo 0.80.0">
             <title>QuickLogs David Raleche</title>
-
-
-
-
             <!-- Bootstrap core CSS -->
             <link href="bootstrap.min.css" rel="stylesheet">
-
+            <style>
+                .form-range {
+                    width: 50%;
+                }
+                .form-control {
+                    width: 50%;
+                    display: inline-block;
+                }
+            </style>
         </head>
         <body>
 
         <main>
-
-
-
-
             <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top justify-content-between" aria-label="Second navbar example">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">QuickLogs</a>
@@ -229,9 +229,7 @@ class QuickLogs
 
                     <div class="collapse navbar-collapse" id="navbarsExample02">
                             <ul class="navbar-nav me-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="/swagger">Swagger</a>
                                 </li>
