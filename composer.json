@@ -16,7 +16,6 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.0",
         "yana/dr" : "^1.4",
         "phpunit/phpunit": "^7.4",
         "guzzlehttp/guzzle": "^6.0"
