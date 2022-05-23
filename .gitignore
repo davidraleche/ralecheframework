@@ -10,3 +10,4 @@ vendor/*
 .idea/sonarIssues.xml
 .idea/vcs.xml
 .idea/workspace.xml
+.DS_Store

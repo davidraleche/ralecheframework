@@ -8,7 +8,6 @@
 
 namespace Yana\Logs;
 
-
 use Yana\Authentication\QuickAuthentication;
 use Yana\Command\ExecutePhpUnit;
 
@@ -247,9 +246,7 @@ class QuickLogs
                             <input   type="submit" class="btn btn-primary my-2" name="submit" value="searchKeyword"></input>
                             <!--                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
                         </form>
-<!---->
-<!---->
-<!---->
+
                         <form action="index.php?" method="post" name="changerows" id="changerows" class="form-horizontal mx-auto  ">
                             <input type="hidden" name="user"
                                    value="<?= $this->quickAuthentication->getUsername() ?>"></input>
@@ -433,8 +430,6 @@ class QuickLogs
      */
     private function htmlHeader()
     {
-
-
         echo "<head>
                 <title>QuickLogs - David Raleche</title>
                  <meta name=\"author\" content=\"David Raleche\">

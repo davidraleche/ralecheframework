@@ -580,8 +580,6 @@ class QuickAuthentication
     <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- Tabs Titles -->
-
             <!-- Icon -->
             <div class="fadeIn first">
                 <h1 class="display-6 text-muted">QuickAuth </h1>
@@ -599,14 +597,6 @@ class QuickAuthentication
     </script>
     </body>
     </html>
-
-
-
-<!--        <form method="POST" action="index.php">-->
-<!--            User <input type="text" name="user"></input><br/>-->
-<!--            Pass <input type="password" name="pass"></input><br/>-->
-<!--            <input type="submit" name="submit" value="Go"></input>-->
-<!--        </form>-->
         <?php
     }
 }
