@@ -39,8 +39,9 @@ class QuickAuthentication
      */
     public function __construct(array $usersAllowed = null)
     {
-        if(!isset($usersAllowed))
+        if(!isset($usersAllowed)) {
             $usersAllowed = include_once("conf.php");
+        }
 
         $this->usersAllowedArray = $usersAllowed;
         $parameters = $this->retrievePostParameters();
@@ -61,13 +62,11 @@ class QuickAuthentication
     private function retrievePostParameters() : array
     {
         /* Ternary Function */
-        $user = isset($_POST['user']) ? $_POST['user'] : null;
-        $pass = isset($_POST['pass']) ? $_POST['pass'] : null;
+        $user = $_POST['user'] ?? null;
+        $pass = $_POST['pass'] ?? null;
 
         return array('username' => $user, 'password' => $pass);
     }
-
-
 
     /**
      * Verify if user allowed

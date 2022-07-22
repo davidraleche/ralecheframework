@@ -33,6 +33,14 @@ class QuickLogs
     public $quickAuthentication;
     /** @var integer $quickAuthentication */
     public $numberOfRows;
+    /**
+     * @var string
+     */
+    private $filename;
+    /**
+     * @var string
+     */
+    private $error_log_path;
 
     /**
      * QuickLogs constructor.
@@ -187,11 +195,8 @@ class QuickLogs
     /** ===========================
      *
      */
-
-
     public function runHTML()
     {
-
         ?>
 
         <!doctype html>
@@ -204,7 +209,7 @@ class QuickLogs
             <meta name="generator" content="Hugo 0.80.0">
             <title>QuickLogs David Raleche</title>
             <!-- Bootstrap core CSS -->
-            <link href="bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
                 .form-range {
                     width: 50%;
@@ -310,34 +315,36 @@ class QuickLogs
     public function getLogs(int $numberRowsToBeDisplayed = NUMBERROWSTOBEDISPLAYED): void
     {
         /* Check if error_log file exists otherwise failover into back demo */
-        if (file_exists($this->conf_error_log['error_log_path']))
+        if (file_exists($this->conf_error_log['error_log_path'])) {
             $error_log_path = $this->conf_error_log['error_log_path'];
-        else
-            $error_log_path = $this->conf_error_log['error_log_path_backup'];
-        $this->filename = $error_log_path;
-
-        /* See error log file */
-        $this->error_log_path = ' Error Log File: ' . $error_log_path;
-        /* make a html break line */
-
-        /* initialize error log variable to be final display */
-        $error_logs = "";
-
-
-        if ($this->searchKeyword == 'searchKeyword') {
-            /* Php mimic unix Tail command */
-            $error_logs = $this->tail($numberRowsToBeDisplayed);
         } else {
-            $error_logs = $this->searchkeyword($numberRowsToBeDisplayed, $this->searchKeyword);
+            $error_log_path = $this->conf_error_log['error_log_path_backup'];
         }
 
+        /* See error log file */
+        $this->filename = $error_log_path;
+        $this->error_log_path = ' Error Log File: ' . $error_log_path;
 
-        echo "<tr><td>";
-        /* convert breakline \n\r to Html <br> tag */
-        $error_logs = str_replace("\n", "</td></tr><tr><td>", $error_logs);
+        // get the array of log results
+        $error_logs = $this->tail($numberRowsToBeDisplayed);
 
-        print_r($error_logs);
-        echo "</td></tr>";
+        // convert logs array into table
+        $table = "";
+        $count = 0;
+        foreach ($error_logs as $line) {
+            // remove results without the keyword, if searching
+            if ($this->searchKeyword != 'searchKeyword' && !str_contains($line, $this->searchKeyword)) {
+                continue;
+            }
+
+            // convert into table
+            $table .= "<tr><td>$line</td></tr>";
+            $count++;
+        }
+
+        // display count & logs
+        echo '<p class="mb-2">Displaying ' . $count . ' results</p>';
+        echo $table;
     }
 
     /**
@@ -349,78 +356,16 @@ class QuickLogs
      *
      * @since     2019-05-10
      **/
-    public function tail(int $lines = 20): string
+    public function tail(int $lines = 20): array
     {
-        $data = '';
-        $fp = fopen($this->filename, "r");
-        $block = 4096;
-        $max = filesize($this->filename);
+        $data = [];
 
-        for ($len = 0; $len < $max; $len += $block) {
-            $seekSize = ($max - $len > $block) ? $block : $max - $len;
-            fseek($fp, ($len + $seekSize) * -1, SEEK_END);
-            $data = fread($fp, $seekSize) . $data;
-
-            if (substr_count($data, "\n") >= $lines + 1) {
-                /* Make sure that the last line ends with a '\n' */
-                if (substr($data, strlen($data) - 1, 1) !== "\n") {
-                    $data .= "\n";
-                }
-
-                preg_match("!(.*?\n){" . $lines . "}$!", $data, $match);
-                fclose($fp);
-                return $match[0];
-            }
+        $file = @file($this->filename);
+        for ($i = max(0, count($file) - $lines); $i < count($file); $i++) {
+            $data[] = $file[$i];
         }
-        fclose($fp);
+
         return $data;
-    }
-
-    /**
-     *
-     * searchkeyword
-     *
-     * @param string $searchKeyword
-     *
-     * @return string $data
-     *
-     * @throws  \Exception $exception
-     *
-     * @author David Raleche
-     * @version Feb 26 2021
-     *
-     */
-    public function searchkeyword(int $lines = 120, string $searchKeyword)
-    {
-        $lines = 1000;
-        echo "<b>String Searched</b> <font color='red'>" . $searchKeyword . "</font><br>";
-
-
-        $data = '';
-        $fp = fopen($this->filename, "r");
-        $block = 4096;
-        $max = filesize($this->filename);
-
-        for ($len = 0; $len < $max; $len += $block) {
-            $seekSize = ($max - $len > $block) ? $block : $max - $len;
-            fseek($fp, ($len + $seekSize) * -1, SEEK_END);
-            $data = fread($fp, $seekSize) . $data;
-
-            if (substr_count($data, "\n") >= $lines + 1) {
-                /* Make sure that the last line ends with a '\n' */
-                if (substr($data, strlen($data) - 1, 1) !== "\n") {
-                    $data .= "\n";
-                }
-
-                // var_dump($data);
-                preg_match_all("/$searchKeyword(.*)/", $data, $match);
-                //   var_dump($match);
-                fclose($fp);
-                return $match[0];
-            }
-        }
-        fclose($fp);
-        //  return $data;
     }
 
     /**
@@ -433,16 +378,8 @@ class QuickLogs
      */
     private function htmlHeader()
     {
-
-
-        echo "<head>
-                <title>QuickLogs - David Raleche</title>
-                 <meta name=\"author\" content=\"David Raleche\">
-                </head>
-    
-                ";
+        echo "<head><title>QuickLogs - David Raleche</title><meta name=\"author\" content=\"David Raleche\"></head>";
         echo "<div style=\"display: inline-block\"><h1><i>QuickLogs - Error Parser </i><font size='2'><i> - version 1.5 </i></font> </h1></div>";
-
     }
 
     /**
