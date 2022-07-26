@@ -38,22 +38,33 @@ class QuickLogs
     public $quickAuthentication;
     /** @var integer $quickAuthentication */
     public $numberOfRows;
-    /**
-     * @var string
-     */
-    private $filename;
-    /**
-     * @var string
-     */
-    private $error_log_path;
+    /** @var string */
+    private string $filename;
 
     /**
      * QuickLogs constructor.
      * Dependency injection
+     * @throws \Exception
      */
-    public function __construct(QuickAuthentication $quickAuthentication)
+    public function __construct(QuickAuthentication $quickAuthentication, ?string $errorLogFile = null)
     {
-        $this->conf_error_log = include_once("conf.php");
+        if($errorLogFile && file_exists($errorLogFile)) {
+            $this->filename = $errorLogFile;
+        } else {
+            $conf_error_log = include_once("conf.php");
+
+            if (!empty($conf_error_log['error_log_path']) && file_exists($conf_error_log['error_log_path'])) {
+                $this->filename = $conf_error_log['error_log_path'];
+            }
+
+            elseif(!empty($conf_error_log['error_log_path_backup']) && file_exists($conf_error_log['error_log_path_backup'])) {
+                $this->filename = $conf_error_log['error_log_path_backup'];
+            }
+        }
+
+        if(empty($this->filename)) {
+            throw new \Exception("QuickLogs: Config file was not found at {$this->filename}");
+        }
 
         /**
          * Retrieve Post Parameter
@@ -62,7 +73,6 @@ class QuickLogs
         $this->numberOfRows = $parameters['numberOfRows'];
         $this->searchKeyword = $parameters['searchKeyword'];
         $this->executePhpunitValue = $parameters['executePhpunitValue'];
-
 
         /**
          * Execute Shell command Line
@@ -92,33 +102,10 @@ class QuickLogs
         $searchKeyword = isset($_POST['searchKeyword']) ? $_POST['searchKeyword'] : 'searchKeyword';
         $executePhpunit = isset($_POST['executePhpunitValue']) ? $_POST['executePhpunitValue'] : "false";
 
-
         return array(
             'numberOfRows' => $numberOfRows,
             'searchKeyword' => $searchKeyword,
             'executePhpunitValue' => $executePhpunit);
-    }
-
-    /**
-     * Sprout Text - By david Raleche
-     *
-     * @param String $routeUuid
-     *
-     * @return bool
-     *
-     * @author    David Raleche
-     * @link      david.raleche.com
-     *
-     * @since     2019-05-10
-     *
-     **/
-    public function ByDavidRalecheTrademark()
-    {
-        ?>
-        <div style="display: inline-block">
-            <font size="1"><i>by David Raleche</i></font>
-        </div>
-        <?php
     }
 
     /**
@@ -138,17 +125,10 @@ class QuickLogs
     {
         /* If Correct Credentials */
         if ($this->quickAuthentication->ifUserAllowed()) {
-//            $this->htmlHeader();
-//            $this->htmlHeaderSignedIn();
- //           $this->refresh();
-//            $this->getLogs($this->numberOfRows);
-//            $this->refresh();
-//            $this->ByDavidRalecheTrademark();
-
-
             $this->runHTML();
             return true;
         }
+
         /* User not allowed */
         $this->quickAuthentication->signin();
 
@@ -157,53 +137,12 @@ class QuickLogs
         return false;
     }
 
-    /**
-     * Refresh Page
-     *
-     * @author    David Raleche
-     * @link      david.raleche.com
-     *
-     * @since     2019-05-10
-     */
-    public function refresh(): void
-    {
-        //  $this->quickAuthentication->signout();
-        ?>
-<!--        <div>-->
-<!---->
-<!---->
-<!--        </div>-->
-        <?php
-
-
-//            <form action="index.php?" method="post" name="changerows" id="changerows">
-        /*                <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername() ?>"></input>*/
-        /*                <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword() ?>"></input>*/
-//
-//                <input type="submit" name="submit" value="Refresh Logs"></input>
-//                <input type="range" name="numberOfRows" min="10" max="500"
-//                       oninput='document.getElementById("changerows").submit();'
-//                       onchange='document.getElementById("changerows").submit();'
-        /*                       value="<?php echo isset($this->numberOfRows) ? $this->numberOfRows : 10 ?>"*/
-//                >10 to 500 rows </input>
-//                <input type="submit" name="submit" value="Search"></input>
-//            </form>
-
-//            <form action="index.php?" method="post" name="changerows" id="changerows">
-        /*                <input type="hidden" name="user" value="<?= $this->quickAuthentication->getUsername() ?>"></input>*/
-        /*                <input type="hidden" name="pass" value="<?= $this->quickAuthentication->getPassword() ?>"></input>*/
-//                <input type="text" name="searchKeyword" value=""></input>
-//                <input type="submit" name="submit" value="searchKeyword"></input>
-//            </form>
-    }
-
     /** ===========================
      *
      */
     public function runHTML()
     {
         ?>
-
         <!doctype html>
         <html lang="en">
         <head>
@@ -238,19 +177,18 @@ class QuickLogs
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarsExample02">
-                            <ul class="navbar-nav me-auto">
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/swagger">Swagger</a>
-                                </li>
-                            </ul>
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/swagger">Swagger</a>
+                            </li>
+                        </ul>
 
                         <form class="mx-auto" action="index.php?" method="post" name="changerows"
                               id="changerows my-2 my-lg-0 mr-sm-2">
                             <input type="hidden" name="user"
-                                   value="<?= $this->quickAuthentication->getUsername() ?>"></input>
+                                   value="<?= $this->quickAuthentication->getUsername() ?>"/>
                             <input type="hidden" name="pass"
-                                   value="<?= $this->quickAuthentication->getPassword() ?>"></input>
+                                   value="<?= $this->quickAuthentication->getPassword() ?>"/>
                             <input name="searchKeyword" class="form-control mr-sm-2" type="search"
                                    placeholder="Search"
                                    aria-label="Search">
@@ -260,47 +198,32 @@ class QuickLogs
 
                         <form action="index.php?" method="post" name="changerows" id="changerows" class="form-horizontal mx-auto  ">
                             <input type="hidden" name="user"
-                                   value="<?= $this->quickAuthentication->getUsername() ?>"></input>
+                                   value="<?= $this->quickAuthentication->getUsername() ?>"/>
                             <input type="hidden" name="pass"
-                                   value="<?= $this->quickAuthentication->getPassword() ?>"></input>
+                                   value="<?= $this->quickAuthentication->getPassword() ?>"/>
 
                             <input class="form-range" type="range" name="numberOfRows" min="10" max="500"
                                    oninput='document.getElementById("changerows").submit();'
                                    onchange='document.getElementById("changerows").submit();'
-                                   value="<?php echo isset($this->numberOfRows) ? $this->numberOfRows : 10 ?>"
-                            > </input>
+                                   value="<?= $this->numberOfRows ?? 10 ?>"/>
+
                             <button type="submit" class="btn btn-primary my-2" name="submit" value="Search">Refine</button>
                         </form>
 
-
-
-                            <form action="index.php" method="post" class="mx-auto">
-                                <input type="hidden" name="user" value=""></input>
-                                <input type="hidden" name="pass" value=""></input>
-                                <button class="btn btn-outline-success " type="submit" name="submit" value="Sign Out">Sign Out</button>
-                            </form>
-
+                        <form action="index.php" method="post" class="mx-auto">
+                            <input type="hidden" name="user" value=""/>
+                            <input type="hidden" name="pass" value=""/>
+                            <button class="btn btn-outline-success " type="submit" name="submit" value="Sign Out">Sign Out</button>
+                        </form>
                     </div>
                 </div>
-
-
             </nav>
         </main>
-            <div style="padding-left:15px">
-                <br><br><br><br><br>
+            <div style="padding-top:80px">
                 <table class="table table-striped">
-                <?php
-                $this->getLogs($this->numberOfRows);
-                ?>
+                <?php $this->getLogs($this->numberOfRows) ?>
                 </table>
             </div>
-
-        
-        <script type="application/javascript">
-            window.scrollTo(0,document.body.scrollHeight);
-        </script>
-
-
         </body>
         <?php
     }
@@ -315,19 +238,8 @@ class QuickLogs
      *
      * @since     2019-05-10
      */
-    public function getLogs(int $numberRowsToBeDisplayed = NUMBERROWSTOBEDISPLAYED): void
+    public function getLogs(int $numberRowsToBeDisplayed = self::NUMBERROWSTOBEDISPLAYED): void
     {
-        /* Check if error_log file exists otherwise failover into back demo */
-        if (file_exists($this->conf_error_log['error_log_path'])) {
-            $error_log_path = $this->conf_error_log['error_log_path'];
-        } else {
-            $error_log_path = $this->conf_error_log['error_log_path_backup'];
-        }
-
-        /* See error log file */
-        $this->filename = $error_log_path;
-        $this->error_log_path = ' Error Log File: ' . $error_log_path;
-
         // get the array of log results
         $error_logs = $this->tail($numberRowsToBeDisplayed);
 
@@ -340,13 +252,18 @@ class QuickLogs
                 continue;
             }
 
-            // convert into table
-            $table .= "<tr><td>$line</td></tr>";
             $count++;
+
+            // convert into table
+            $table .= "
+                <tr>
+                    <td style='width:0px'><b>$count</b></td>
+                    <td>$line</td>
+                </tr>";
         }
 
         // display count & logs
-        echo '<p class="mb-2">Displaying ' . $count . ' results</p>';
+        echo '<p class="mb-2">Displaying <b>' . $count . '</b> results from <i>' . $this->filename . '</i></p>';
         echo $table;
     }
 
@@ -368,56 +285,6 @@ class QuickLogs
             $data[] = $file[$i];
         }
 
-        return $data;
+        return array_reverse($data);
     }
-
-    /**
-     * Html Header
-     *
-     * @author    David Raleche
-     * @link      david.raleche.com
-     *
-     * @since     2019-05-10
-     */
-    private function htmlHeader()
-    {
-        echo "<head><title>QuickLogs - David Raleche</title><meta name=\"author\" content=\"David Raleche\"></head>";
-        echo "<div style=\"display: inline-block\"><h1><i>QuickLogs - Error Parser </i><font size='2'><i> - version 1.5 </i></font> </h1></div>";
-    }
-
-    /**
-     * Html Header SignedIn
-     *
-     * @author    David Raleche
-     * @link      david.raleche.com
-     *
-     * @since     2019-05-10
-     */
-    private function htmlHeaderSignedIn()
-    {
-        echo "<script>";
-        ?>
-        var myVar;
-
-        console.log('Auto Refresh Active maVar'+JSON.stringify(myVar));
-        myVar = setTimeout(function () {
-        window.location.reload();
-        }, 49999861776383 );
-
-        function autoResfreshFunction(){
-        myVar = setTimeout(function () {
-        window.location.reload();
-        }, 3000);
-        alert('Auto Refresh Restarted');
-        }
-
-        function stopResfreshFunction() {
-        myVar = clearTimeout(myVar);
-        console.log('refresh stopped '+JSON.stringify(myVar));
-        alert('Auto Refresh stopped');
-        }
-        <?php
-        echo "</script>";
-    }
-
 }
